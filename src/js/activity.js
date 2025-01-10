@@ -3,15 +3,14 @@ import { getRecentAcSubmissions } from "../graphql/problems.js";
 
 const activitiesListDiv = document.getElementById("activities-list");
 const emptyImg = document.getElementById("empty-activity-list-img");
+const loadingImg = document.getElementById("loading-activity-list-img");
 
 
 export const loadActivities = () => {
 
     activitiesListDiv.innerHTML = "";
-
-    emptyImg.src = "../../images/loading.gif"
-    emptyImg.classList.add("active");
-    emptyImg.classList.remove("inactive");
+    loadingImg.classList.add("active");
+    loadingImg.classList.remove("inactive");
 
     getFriendsList(async (friends) => {
 
@@ -38,15 +37,16 @@ export const loadActivities = () => {
         allActivities.sort((a, b) => b.timestamp - a.timestamp);
 
         if (allActivities.length === 0) {
-            emptyImg.src = "../../images/nothing_here.png"
             emptyImg.classList.add("active");
             emptyImg.classList.remove("inactive");
         }
         else {
-            emptyImg.src = "../../images/nothing_here.png"
             emptyImg.classList.add("inactive");
             emptyImg.classList.remove("active");
         }
+
+        loadingImg.classList.remove("active");
+        loadingImg.classList.add("inactive");
 
         // Group activities by day
         const groupedActivities = groupActivitiesByDay(allActivities);

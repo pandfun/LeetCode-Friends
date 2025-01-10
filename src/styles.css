@@ -202,3 +202,13 @@ input {
     height: 1px;
     margin: 10px 0;
 }
+
+#loading-activity-list-img {
+    width: 30px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    border-radius: 9px;
+}
