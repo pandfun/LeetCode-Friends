@@ -2,26 +2,22 @@ import { getFriendsList, removeFriend } from "./storage.js";
 
 const friendsListDiv = document.getElementById("friends-list");
 
+
 // Load and display all the friends from storage
 export const loadFriendsDivs = () => {
-    // Remove all the divs in "#friends-list" div
+
     friendsListDiv.innerHTML = "";
 
     // Get the list of friends
     getFriendsList((friends) => {
-        console.log(friends.length);
-        if (friends.length === 0) {
-            document.getElementById("empty-list-img").classList.add("active");
-            document
-                .getElementById("empty-list-img")
-                .classList.remove("inactive");
-        } else {
-            // Hide the empty image and add friends
-            document
-                .getElementById("empty-list-img")
-                .classList.remove("active");
 
-            document.getElementById("empty-list-img").classList.add("inactive");
+        if (friends.length === 0) {
+            document.getElementById("empty-friends-list-img").classList.add("active");
+            document.getElementById("empty-friends-list-img").classList.remove("inactive");
+        } 
+        else {
+            document.getElementById("empty-friends-list-img").classList.remove("active");
+            document.getElementById("empty-friends-list-img").classList.add("inactive");
 
             friends.forEach((friend) => {
                 const friendDiv = createFriendDiv(friend);
