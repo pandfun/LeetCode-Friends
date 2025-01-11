@@ -51,14 +51,6 @@ body {
     display: block;
 }
 
-/* #friends-list div,
-#activities-list div {
-    margin: 5px 0;
-    padding: 5px;
-    background: #f0f0f0;
-    border-radius: 3px;
-} */
-
 .tab-content {
     margin: 5px 0;
     padding: 10px;
@@ -116,21 +108,16 @@ input {
     font-family: Poppins, sans-serif;
 
     background-color: #e0e0e0;
-    /* padding: 10px; */
-    /* margin-bottom: 8px; */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* font-family: Poppins, sans-serif; */
     font-size: 12px;
     color: #333;
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
 }
 
 .friend-buttons {
     display: flex;
-    gap: 10px; /* Space between the buttons */
+    gap: 10px;
+    /* Space between the buttons */
 }
 
 .friend button {
@@ -223,4 +210,62 @@ input {
     text-align: center;
 
     border-radius: 9px;
+}
+
+.activity {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.activity:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.username {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.problem-name {
+    color: #3498db;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.problem-name:hover {
+    color: #2980b9;
+}
+
+.status {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.difficulty {
+    font-weight: bold;
+}
+
+/* Submission Link */
+.submission-link {
+    color: #3498db;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-top: 5px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.submission-link:hover {
+    color: #2980b9;
 }
