@@ -47,7 +47,7 @@ usernameInputBtn.addEventListener("click", () => {
 
 // Call loadFriendsDivs when the popup is opened
 document.addEventListener("DOMContentLoaded", () => {
-    
-    addFriendsBtn.classList.add("active-btn");
-    loadFriendsDivs();
+
+    viewActivitiesBtn.classList.add("active-btn");
+    loadActivities();
 });
