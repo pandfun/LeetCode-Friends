@@ -4,6 +4,26 @@
 This chrome extension allows users to add and displays recent activity of your LeetCode friends.
 It works based on the LeetCode GraphQL API to retrieve recent activities of friends.
 
+<details>
+  <summary>✨ GUI Preview ✨</summary>
+
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 30px;">
+      <img src="./assets/ViewActivitiesPage.png" alt="Activities" width="400" height="auto" style="border-radius: 6px;">
+      <img src="./assets/AddFriendsPage.png" alt="Friends" width="400" height="auto" style="border-radius: 6px;">
+  </div>
+
+</details>
+
+
+<br>
+
+- [Features](#features)
+- [Installation & Setup](#installation-and-setup)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation-steps)
+- [Preview](#preview)
+- [Acknowledgements](#acknowledgements)
+
 ## Features
 
 - Add and Remove friends.
@@ -38,11 +58,12 @@ git clone https://github.com/pandfun/LeetCode-Friends.git
 ![Installation Photo](./assets/Installation.jpg)
 
 
-## GUI
+## Preview
 
-![image](./assets/AddFriendsPage.png)
-
-![image](./assets/ViewActivitiesPage.png)
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 30px;">
+   <img src="./assets/ViewActivitiesPage.png" alt="Activities" width="400" height="auto" style="border-radius: 6px;">
+   <img src="./assets/AddFriendsPage.png" alt="Friends" width="400" height="auto" style="border-radius: 6px;">
+</div>
 
 
 ## Acknowledgements
