@@ -21,12 +21,21 @@ export const loadActivities = () => {
         for (const username of friends) {
             try {
                 const activities = await getRecentAcSubmissions(username);
-                allActivities.push(
-                    ...activities.map((activity) => ({
+
+                for (const activity of activities) {
+                    console.log(activity);
+                    let problemInfo = await getProblemInfo(activity.titleSlug);
+                    if (!problemInfo) {
+                        console.error(`Problem info not found for: ${activity.titleSlug}`);
+                        problemInfo = { difficulty: "Unknown" };
+                    }
+
+                    allActivities.push({
                         ...activity,
                         username: username,
-                    }))
-                );
+                        difficulty: problemInfo.difficulty,
+                    });
+                }
 
             }
             catch (error) {
@@ -70,7 +79,7 @@ export const loadActivities = () => {
 
             for (const activity of activitiesOfDay) {
 
-                const activityDiv = await createActivityDiv(activity);
+                const activityDiv = createActivityDiv(activity);
                 activitiesListDiv.appendChild(activityDiv);
             }
         }
@@ -105,7 +114,7 @@ const groupActivitiesByDay = (activities) => {
 
 
 // Create a div for each activity
-const createActivityDiv = async (activity) => {
+const createActivityDiv = (activity) => {
 
     const activityDiv = document.createElement("div");
     activityDiv.classList.add("activity");
@@ -137,22 +146,15 @@ const createActivityDiv = async (activity) => {
 
 
     // Problem info
-    let problemInfo = await getProblemInfo(activity.titleSlug);
-
-    if (!problemInfo) {
-        console.error(`Problem info not found for: ${activity.titleSlug}`);
-        problemInfo = { difficulty: "Unknown" }; // Fallback value
-    }
-
     const statusSpan = document.createElement("span");
     statusSpan.classList.add("status");
 
-    statusSpan.textContent = `${problemInfo.difficulty} (${time})`;
+    statusSpan.textContent = `${activity.difficulty} (${time})`;
 
-    const difficulty = problemInfo.difficulty.toLowerCase();
+    const difficulty = activity.difficulty.toLowerCase();
 
     const difficultyColor = getDifficultyColor(difficulty);
-    const difficultyText = problemInfo.difficulty;
+    const difficultyText = activity.difficulty;
 
 
     const difficultySpan = document.createElement("span");
