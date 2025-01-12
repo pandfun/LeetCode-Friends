@@ -1,3 +1,4 @@
+import { getUserInfo } from "../graphql/user.js";
 import { getFriendsList, removeFriend } from "./storage.js";
 
 const friendsListDiv = document.getElementById("friends-list");
@@ -9,7 +10,7 @@ export const loadFriendsDivs = () => {
     friendsListDiv.innerHTML = "";
 
     // Get the list of friends
-    getFriendsList((friends) => {
+    getFriendsList(async (friends) => {
 
         if (friends.length === 0) {
             document.getElementById("empty-friends-list-img").classList.add("active");
@@ -19,26 +20,75 @@ export const loadFriendsDivs = () => {
             document.getElementById("empty-friends-list-img").classList.remove("active");
             document.getElementById("empty-friends-list-img").classList.add("inactive");
 
-            friends.forEach((friend) => {
-                const friendDiv = createFriendDiv(friend);
-                friendsListDiv.appendChild(friendDiv);
+            const friendPromises = friends.map(async (username) => {
+
+                try {
+
+                    const userInfo = await getUserInfo(username);
+                    if (!userInfo) {
+                        throw new Error("User not found!");
+                    }
+            
+                    return {
+                        username: username,
+                        avatar: userInfo.userAvatar || "../../images/DefaultAvatar.png",
+                    };
+            
+                } 
+                catch (error) {
+                    console.error(`Error fetching user info for ${username}:`, error);
+                    return {
+                        username: username,
+                        avatar: "../../images/DefaultAvatar.png",
+                    };
+                }
+            });
+            
+            const friendsData = await Promise.all(friendPromises);
+
+            // Create and append friend divs for each friend
+            friendsData.forEach((friend) => {
+                if (friend) {
+
+                    const friendDiv = createFriendDiv(friend);
+                    friendsListDiv.appendChild(friendDiv);
+                }
             });
         }
     });
 };
 
-export const createFriendDiv = (username) => {
+
+export const createFriendDiv = (friend) => {
+
+    const username = friend.username;
+    const avatar = friend.avatar;
+
     const friendDiv = document.createElement("div");
     friendDiv.classList.add("friend");
+
+    // Avatar display
+    const avatarImg = document.createElement("img");
+    avatarImg.classList.add("friend-avatar");
+
+    avatarImg.src = avatar;
+    avatarImg.alt = `${username}'s Avatar`;
+
+    friendDiv.appendChild(avatarImg);
+
 
     // Username display
     const usernameSpan = document.createElement("span");
     usernameSpan.textContent = username;
+    usernameSpan.classList.add("username");
+    
     friendDiv.appendChild(usernameSpan);
+
 
     // Buttons container
     const buttonsContainer = document.createElement("div");
     buttonsContainer.classList.add("friend-buttons");
+
 
     // Link button with SVG icon
     const linkButton = document.createElement("button");
@@ -49,7 +99,9 @@ export const createFriendDiv = (username) => {
     linkButton.addEventListener("click", () => {
         window.open(`https://leetcode.com/u/${username}`, "_blank");
     });
+
     buttonsContainer.appendChild(linkButton);
+
 
     // Delete button with SVG icon
     const deleteButton = document.createElement("button");
@@ -66,6 +118,7 @@ export const createFriendDiv = (username) => {
     buttonsContainer.appendChild(deleteButton);
 
     friendDiv.appendChild(buttonsContainer);
+
 
     return friendDiv;
 };

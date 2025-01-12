@@ -1,7 +1,18 @@
+import { getUserInfo } from "../graphql/user.js";
 import { loadFriendsDivs } from "./friends.js";
 
 // Save the username to local storage
-export const saveUsername = (username) => {
+export const saveUsername = async(username) => {
+
+    // Check if username exists on leetcode.com
+    const friendData = await getUserInfo(username);
+    console.log(friendData);
+
+    if (friendData === null) {
+        alert("That user does not exist!");
+        return;
+    }
+
     chrome.storage.local.get({ friends: [] }, (data) => {
         const friends = data.friends;
 
