@@ -57,7 +57,7 @@ body {
     background: #f0f0f0;
     border-radius: 3px;
     font-family: Poppins, sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400px;
     max-height: 500px;
 }
@@ -167,7 +167,7 @@ input {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: Poppins, sans-serif;
-    font-size: 12px;
+    font-size: 5px;
     color: #333;
     display: flex;
     justify-content: space-between;
@@ -217,10 +217,10 @@ input {
     border: 1px solid #ddd;
     border-radius: 8px;
     margin: 10px 0;
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
@@ -233,12 +233,12 @@ input {
 .username {
     font-weight: bold;
     color: #2c3e50;
-    font-size: 1.1rem;
+    font-size: 12px;
 }
 
 .problem-name {
     color: #3498db;
-    font-size: 1rem;
+    font-size: 15px;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -259,7 +259,7 @@ input {
 /* Submission Link */
 .submission-link {
     color: #3498db;
-    font-size: 0.9rem;
+    font-size: 12px;
     text-decoration: none;
     margin-top: 5px;
     display: block;
