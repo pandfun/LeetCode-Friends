@@ -17,30 +17,50 @@ export const loadActivities = () => {
 
         let allActivities = [];
 
-        // Fetch activities for each friend
-        for (const username of friends) {
-            try {
-                const activities = await getRecentAcSubmissions(username);
+        try {
 
-                for (const activity of activities) {
-                    console.log(activity);
-                    let problemInfo = await getProblemInfo(activity.titleSlug);
-                    if (!problemInfo) {
-                        console.error(`Problem info not found for: ${activity.titleSlug}`);
-                        problemInfo = { difficulty: "Unknown" };
-                    }
+            // Fetch activities for all friends concurrently
+            const activitiesPromises = friends.map(async (username) => {
 
-                    allActivities.push({
-                        ...activity,
-                        username: username,
-                        difficulty: problemInfo.difficulty,
-                    });
+                try {
+                    const activities = await getRecentAcSubmissions(username);
+
+                    const detailedActivities = await Promise.all(
+
+                        activities.map(async (activity) => {
+
+                            let problemInfo = await getProblemInfo(activity.titleSlug);
+                            if (!problemInfo) {
+                                console.error(`Problem info not found for: ${activity.titleSlug}`);
+                                problemInfo = { difficulty: "Unknown" };
+                            }
+
+                            return {
+                                ...activity,
+                                username: username,
+                                difficulty: problemInfo.difficulty,
+                            };
+                        })
+
+                    );
+
+                    return detailedActivities;
                 }
+                catch (error) {
+                    console.error(`Error fetching activities for ${username}:`, error);
+                    return [];
+                }
+            });
 
-            }
-            catch (error) {
-                console.error(`Error fetching activities for ${username}:`, error);
-            }
+            // Wait for all friends' activities to resolve
+            const allFriendsActivities = await Promise.all(activitiesPromises);
+
+            // Flatten the nested arrays
+            allActivities = allFriendsActivities.flat();
+
+        } 
+        catch (error) {
+            console.error("Error fetching activities:", error);
         }
 
 
@@ -85,6 +105,7 @@ export const loadActivities = () => {
         }
     });
 };
+
 
 
 
