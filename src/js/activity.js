@@ -159,15 +159,21 @@ const createActivityDiv = async (activity) => {
     difficultySpan.style.color = difficultyColor;
     difficultySpan.textContent = difficultyText;
 
-
     statusSpan.textContent = ` (${time})`;
     statusSpan.prepend(difficultySpan);
+
+        
+    // Status container with both Submission Link and Problem Info
+    const statusContainer = document.createElement("div");
+    statusContainer.classList.add("status-container");
+
+    statusContainer.appendChild(statusSpan);
+    statusContainer.appendChild(submissionLink);
 
 
     activityDiv.appendChild(usernameSpan);
     activityDiv.appendChild(problemLink);
-    activityDiv.appendChild(submissionLink);
-    activityDiv.appendChild(statusSpan);
+    activityDiv.appendChild(statusContainer);
 
     return activityDiv;
 };

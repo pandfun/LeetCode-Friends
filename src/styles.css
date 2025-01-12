@@ -187,7 +187,7 @@ input {
 
 .activity .username {
     font-weight: bold;
-    color: #007bff;
+    color: #5d5d5d;
 }
 
 .activity .activity-title {
@@ -241,6 +241,7 @@ input {
     font-size: 15px;
     text-decoration: none;
     transition: color 0.3s ease;
+    text-align: center;
 }
 
 .problem-name:hover {
@@ -261,11 +262,18 @@ input {
     color: #3498db;
     font-size: 12px;
     text-decoration: none;
-    margin-top: 5px;
     display: block;
     transition: color 0.3s ease;
 }
 
 .submission-link:hover {
     color: #2980b9;
+}
+
+.status-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
 }
