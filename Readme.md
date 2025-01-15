@@ -87,6 +87,10 @@ git clone https://github.com/pandfun/LeetCode-Friends.git
 
   3: Modify the value of `NUM_SUBMISSIONS` (Leetcode allows a max value of `20`).
 
+> [!NOTE]  
+> A higher value would mean fetching more data.
+> This can slow down the time to fetch user submissions.
+
 
 ---
 <br>
