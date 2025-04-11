@@ -19,12 +19,8 @@ It works based on the LeetCode GraphQL API to retrieve recent activities of frie
 
 - [Features](#features)
 - [Installation & Setup](#installation-and-setup)
-   - [Prerequisites](#prerequisites)
-   - [Installation](#installation-steps)
 - [Customizations](#customizations)
 - [Preview](#preview)
-- [Acknowledgements](#acknowledgements)
-
 
 ---
 <br>
@@ -42,12 +38,6 @@ It works based on the LeetCode GraphQL API to retrieve recent activities of frie
 <br>
 
 ## Installation and Setup
-
-### Prerequisites
-
-- **Node.js**: Ensure that Node.js is installed on your machine. If not, you can download it from [Node.js official website](https://nodejs.org/).
-
-### Installation Steps
 
 1. Clone the Repository:
 ```bash
@@ -106,10 +96,3 @@ git clone https://github.com/pandfun/LeetCode-Friends.git
 
 ---
 <br>
-
-
-## Acknowledgements
-
-- [LeetCode](https://leetcode.com/) for providing the problem-solving platform.
-- [GraphQL](https://graphql.org/) for providing a flexible query language for APIs.
-- [Node.js](https://nodejs.org/) for server-side JavaScript execution.
