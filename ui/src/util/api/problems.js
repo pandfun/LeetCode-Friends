@@ -1,6 +1,6 @@
 const url = "https://leetcode.com/graphql";
 
-const NUM_SUBMISSIONS = 5;
+const NUM_SUBMISSIONS = 15;
 
 // Get the recent AC Submissions for a user
 export const getRecentAcSubmissions = async (username, limit = NUM_SUBMISSIONS) => {
