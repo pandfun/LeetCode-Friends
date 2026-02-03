@@ -42,6 +42,7 @@ git clone https://github.com/pandfun/LeetCode-Friends.git
 
 ```bash
 cd ui
+npm install
 npm run build
 ```
 
